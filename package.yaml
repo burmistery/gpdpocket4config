@@ -1,0 +1,19 @@
+meta:
+  description: Hardware support configuration for GPD Pocket 4
+  vendor: burmistery
+  maintainer: burmistery
+  license: MIT
+  homepage: https://github.com/burmistery/gpdpocket4config
+
+depends:
+  - systemd
+  - iio-sensor-proxy
+
+files:
+  "/usr/libexec/niri-autorotate.sh"
+    file: scripts/niri-automate.sh
+    mode: "0755"
+
+  "/usr/lib/systemd/user/niri-autorotate.service"
+    file: systemd/niri-autorotate.service
+    mode: "0644"

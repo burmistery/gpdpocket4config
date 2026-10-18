@@ -3,11 +3,15 @@ name: Build RPM
 on:
   push:
     paths:
-      - "rpm/**"
+      - "scripts/**"
+      - "systemd/**"
+      - "package.yaml"
       - ".github/workflows/build.yml"
   pull_request:
     paths:
-      - "rpm/**"
+      - "scripts/**"
+      - "systemd/**"
+      - "package.yaml"
       - ".github/workflows/build.yml"
   workflow_dispatch:
 
@@ -23,17 +27,19 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Build RPM
-        id: rpm
-        uses: naveenrajm7/rpmbuild@master
+        id: pkg
+        uses: kentik/pkg@v1
         with:
-          spec_file: "rpm/SPECS/gpd-pocket4-config.spec"
-  
+          name: gpd-pocket4-config
+          version: 0.0.1
+          arch: noarch
+          format: rpm
+          package: package.yaml 
+ 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
           name: gpd-pocket4-config
-          path: |
-            ${{ steps.rpm.outputs.rpm_dir_path }}
-            ${{ steps.rpm.outputs.source_rpm_dir_path }}
+          path: ${{ steps.pkg.outputs.package }}
           if-no-files-found: error
           retention-days: 30
