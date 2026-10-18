@@ -10,9 +10,9 @@ depends:
   - iio-sensor-proxy
 
 files:
-  "/usr/libexec/niri-autorotate.sh"
+  "/usr/libexec/niri-autorotate.sh":
     file: scripts/niri-autorotate.sh
     mode: "0755"
-  "/usr/lib/systemd/user/niri-autorotate.service"
+  "/usr/lib/systemd/user/niri-autorotate.service":
     file: systemd/niri-autorotate.service
     mode: "0644"
