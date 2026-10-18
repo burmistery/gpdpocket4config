@@ -33,7 +33,7 @@ jobs:
         with:
           name: gpd-pocket4-config
           path: |
-            ${{ steps.rpm.outputs.rpm_dir_path }}/**/*.rpm
-            ${{ steps.rpm.outputs.source_rpm_dir_path }}/*.rpm
+            ${{ steps.rpm.outputs.rpm_dir_path }}
+            ${{ steps.rpm.outputs.source_rpm_dir_path }}
           if-no-files-found: error
           retention-days: 30
