@@ -20,7 +20,7 @@ Hardware support configuration for GPD Pocket 4.
 
 %build
 
-%intall
+%install
 install -Dpm0755 %{SOURCE0} \
     %{buildroot}%{_libexecdir}/niri-autorotate.sh
 install -Dpm0644 %{SOURCE1} \
