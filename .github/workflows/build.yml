@@ -1,4 +1,4 @@
-name: RPM Build
+name: Build RPM
 
 on:
   push:
@@ -17,21 +17,23 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-    - uses: actions/checkout@v2
+      - name: Checkout
+      - uses: actions/checkout@v4
 
-    - name: build RPM package
-      id: rpm
-      uses: naveenrajm7/rpmbuild@master
-      with:
-        spec_file: "rpm/SPECS/gpd-pocket4-config.spec"
-
-    - name: Upload artifact
-      uses: actions/upload-artifact@v4
-      with:
-        name: gpd-pocket4-config
-        path: |
-          ${{ steps.rpm.outputs.rpm_dir_path }}/**/*.rpm
-          ${{ steps.rpm.outputs.source_rpm_dir_path }}/*.rpm
-        if-no-files-found: error
-        retention-days: 30
+      - name: Build RPM
+        id: rpm
+        uses: naveenrajm7/rpmbuild@master
+        with:
+          spec_file: "rpm/SPECS/gpd-pocket4-config.spec"
+  
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: gpd-pocket4-config
+          path: |
+            ${{ steps.rpm.outputs.rpm_dir_path }}/**/*.rpm
+            ${{ steps.rpm.outputs.source_rpm_dir_path }}/*.rpm
+          if-no-files-found: error
+          retention-days: 30
