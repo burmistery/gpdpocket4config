@@ -1,0 +1,14 @@
+[Unit]
+Description=Niri automatic screen rotation
+PartOf=niri.service
+After=niri.service
+BindsTo=niri.service
+
+[Service]
+Type=simple
+ExecStart=/usr/libexec/niri-autorotate.sh
+Restart=on-failure
+RetartSec=1
+
+[Install]
+WantedBy=niri.service
