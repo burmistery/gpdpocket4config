@@ -5,8 +5,7 @@ Summary:	Hardware support configuration for GPD Pocket 4
 
 License:	MIT
 URL:		https://github.com/burmistery/gpdpocket4config
-Source0:	scripts/niri-autorotate.sh
-Source1:	systemd/niri-autorotate.service
+Source0:	%{name}-%{version}.tar.gz
 
 BuildArch:	noarch
 
@@ -17,18 +16,20 @@ Requires:	iio-sensor-proxy
 Hardware support configuration for GPD Pocket 4.
 
 %prep
+%setup -q
 
 %build
 
 %install
-install -Dpm0755 %{SOURCE0} \
+install -Dpm0755 scripts/niri-autorotate.sh \
     %{buildroot}%{_libexecdir}/niri-autorotate.sh
-install -Dpm0644 %{SOURCE1} \
-    %{buildroot}%{_userunitdir}/niri-autorotate.service
+
+install -Dpm0644 systemd/niri-autorotate.service \
+    %{buildroot}/usr/lib/systemd/user/niri-autorotate.service
 
 %files
 %{_libexecdir}/niri-autorotate.sh
-%{_userunitdir}/niri-autorotate.service
+/usr/lib/systemd/user/niri-autorotate.service
 
 %changelog
 * Sun Oct 18 2026 burmistery
