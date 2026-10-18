@@ -16,3 +16,5 @@ files:
   "/usr/lib/systemd/user/niri-autorotate.service":
     file: systemd/niri-autorotate.service
     mode: "0644"
+  "/usr/lib/systemd/user/niri.service.d/niri-autorotate.conf":
+    file: systemd/niri-autorotate.conf
