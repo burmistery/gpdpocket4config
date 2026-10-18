@@ -11,9 +11,8 @@ depends:
 
 files:
   "/usr/libexec/niri-autorotate.sh"
-    file: scripts/niri-automate.sh
+    file: scripts/niri-autorotate.sh
     mode: "0755"
-
   "/usr/lib/systemd/user/niri-autorotate.service"
     file: systemd/niri-autorotate.service
     mode: "0644"
